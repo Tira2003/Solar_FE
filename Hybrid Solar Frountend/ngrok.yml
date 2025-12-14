@@ -1,0 +1,11 @@
+version: 3
+agent:
+  authtoken: 35WF84LFSRjGDuSIKKX0rzveVW2_32KXDn4ZJCDTnsyKCXvCi
+endpoints:
+  - name: back-end
+    url: https://mildewy-moira-spinningly.ngrok-free.dev
+    upstream:
+      url: http://localhost:8000
+
+
+      
