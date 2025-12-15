@@ -48,6 +48,24 @@ export const api = createApi({
     getWeatherForSolarUnit: build.query({
       query: () => `/weather/solar-unit`,
     }),
+    // Invoice endpoints
+    getInvoices: build.query({
+      query: () => `/invoices`,
+    }),
+    getInvoiceById: build.query({
+      query: (id) => `/invoices/${id}`,
+    }),
+    // Payment endpoints
+    createPaymentSession: build.mutation({
+      query: (data) => ({
+        url: `/payments/create-checkout-session`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getSessionStatus: build.query({
+      query: (sessionId) => `/payments/session-status?session_id=${sessionId}`,
+    }),
   }),
 });
 
@@ -59,5 +77,9 @@ export const {
   useGetSolarUnitByIdQuery, 
   useCreateSolarUnitMutation, 
   useEditSolarUnitMutation,
-  useGetWeatherForSolarUnitQuery
+  useGetWeatherForSolarUnitQuery,
+  useGetInvoicesQuery,
+  useGetInvoiceByIdQuery,
+  useCreatePaymentSessionMutation,
+  useGetSessionStatusQuery
 } = api;

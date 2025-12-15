@@ -1,4 +1,4 @@
-import { ChartLine, LayoutDashboard, TriangleAlert } from "lucide-react";
+import { ChartLine, LayoutDashboard, TriangleAlert, Receipt } from "lucide-react";
 import { Link } from "react-router";
 import {
   Sidebar,
@@ -9,9 +9,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuBadge,
 } from "@/components/ui/sidebar";
 import { useLocation } from "react-router";
 import { cn } from "@/lib/utils";
+import { useGetInvoicesQuery } from "@/lib/redux/query";
 
 // Menu items.
 const items = [
@@ -26,13 +28,19 @@ const items = [
     icon: <TriangleAlert className="w-8 h-8" size={32} />,
   },
   {
+    title: "Invoices",
+    url: "/dashboard/invoices",
+    icon: <Receipt className="w-8 h-8" size={32} />,
+    hasBadge: true,
+  },
+  {
     title: "Analytics",
     url: "/dashboard/analytics",
     icon: <ChartLine className="w-8 h-8" size={32} />,
   },
 ];
 
-const SideBarTab = ({ item }) => {
+const SideBarTab = ({ item, pendingCount }) => {
   let location = useLocation();
   let isActive = location.pathname === item.url;
 
@@ -46,11 +54,21 @@ const SideBarTab = ({ item }) => {
           <span>{item.title}</span>
         </Link>
       </SidebarMenuButton>
+      {item.hasBadge && pendingCount > 0 && (
+        <SidebarMenuBadge className="bg-yellow-500 text-white">
+          {pendingCount}
+        </SidebarMenuBadge>
+      )}
     </SidebarMenuItem>
   );
 };
 
 export function AppSidebar() {
+  const { data: invoices } = useGetInvoicesQuery();
+  const pendingCount = invoices?.filter(
+    (invoice) => invoice.status?.toLowerCase() === "pending"
+  ).length || 0;
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -61,7 +79,7 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu className="mt-4 text">
               {items.map((item) => (
-                <SideBarTab key={item.url} item={item} />
+                <SideBarTab key={item.url} item={item} pendingCount={pendingCount} />
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
@@ -70,3 +88,4 @@ export function AppSidebar() {
     </Sidebar>
   );
 }
+
