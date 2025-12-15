@@ -24,6 +24,7 @@ import AnomaliesPage from "./pages/anomalies/anomalies.page.jsx";
 import InvoicesPage from "./pages/invoices/invoices.page.jsx";
 import PaymentPage from "./pages/invoices/payment.page.jsx";
 import PaymentCompletePage from "./pages/invoices/complete.page.jsx";
+import InvoiceDetailPage from "./pages/invoices/invoice-detail.page.jsx";
 
 import { store } from "@/lib/redux/store.js";
 import { Provider } from "react-redux";
@@ -53,6 +54,7 @@ createRoot(document.getElementById("root")).render(
                   <Route path="/dashboard" element={<DashboardPage />} />
                   <Route path="/dashboard/anomalies" element={<AnomaliesPage />} />
                   <Route path="/dashboard/invoices" element={<InvoicesPage />} />
+                  <Route path="/dashboard/invoices/:id" element={<InvoiceDetailPage />} />
                   <Route path="/dashboard/invoices/:id/pay" element={<PaymentPage />} />
                   <Route path="/dashboard/invoices/complete" element={<PaymentCompletePage />} />
                 </Route>

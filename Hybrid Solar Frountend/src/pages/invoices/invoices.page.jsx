@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useGetInvoicesQuery } from "@/lib/redux/query";
-import { useUser } from "@clerk/clerk-react";
 import { Link } from "react-router";
 
 const InvoicesPage = () => {
-  const { user } = useUser();
   const [statusFilter, setStatusFilter] = useState("all");
 
   const {
