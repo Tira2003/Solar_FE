@@ -58,14 +58,7 @@ const InvoicesPage = () => {
     });
   };
 
-  const formatCurrency = (amount) => {
-    if (amount === undefined || amount === null) return "$0.00";
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(amount);
-  };
-
+  
   return (
     <main className="mt-4">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -174,12 +167,7 @@ const InvoicesPage = () => {
                         {invoice.kwhGenerated?.toLocaleString() || 0} kWh
                       </p>
                     </div>
-                    <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">Amount</p>
-                      <p className="text-sm font-medium text-foreground mt-1">
-                        {formatCurrency(invoice.amount)}
-                      </p>
-                    </div>
+                    
                     <div>
                       <p className="text-xs text-gray-500 uppercase tracking-wide">Due Date</p>
                       <p className="text-sm font-medium text-foreground mt-1">
