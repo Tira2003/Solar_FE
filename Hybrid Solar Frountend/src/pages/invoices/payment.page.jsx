@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router";
 import { useGetInvoiceByIdQuery } from "@/lib/redux/query";
 import CheckoutForm from "./components/CheckoutForm";
 
 const PaymentPage = () => {
   const { id } = useParams();
+  const [stripeData, setStripeData] = useState(null);
+  const [isLoadingStripeData, setIsLoadingStripeData] = useState(true);
 
   const {
     data: invoice,
@@ -11,6 +14,12 @@ const PaymentPage = () => {
     isError,
     error,
   } = useGetInvoiceByIdQuery(id);
+
+  // Handle session data from CheckoutForm
+  const handleSessionCreated = (sessionData) => {
+    setStripeData(sessionData);
+    setIsLoadingStripeData(false);
+  };
 
   if (isLoading) {
     return (
@@ -46,13 +55,28 @@ const PaymentPage = () => {
     });
   };
 
-  const formatCurrency = (amount) => {
-    if (amount === undefined || amount === null) return "$0.00";
+  // Format currency from cents (Stripe uses cents)
+  const formatCurrencyFromCents = (amountInCents, currency = "usd") => {
+    if (amountInCents === undefined || amountInCents === null) return null;
     return new Intl.NumberFormat("en-US", {
       style: "currency",
-      currency: "USD",
-    }).format(amount);
+      currency: currency.toUpperCase(),
+    }).format(amountInCents / 100);
   };
+
+  // Use Stripe data if available
+  const displayRatePerKwh = stripeData?.unitAmount 
+    ? formatCurrencyFromCents(stripeData.unitAmount, stripeData.currency)
+    : null;
+  
+  const displayTotalAmount = stripeData?.totalAmount 
+    ? formatCurrencyFromCents(stripeData.totalAmount, stripeData.currency)
+    : null;
+
+  // Loading skeleton component
+  const LoadingSkeleton = ({ width = "w-20" }) => (
+    <div className={`${width} h-5 bg-gray-200 rounded animate-pulse`}></div>
+  );
 
   return (
     <main className="mt-4">
@@ -109,7 +133,14 @@ const PaymentPage = () => {
               <div className="flex justify-between items-center py-3 border-b border-gray-100">
                 <span className="text-gray-600">Rate per kWh</span>
                 <span className="font-medium text-foreground">
-                  {formatCurrency(invoice?.ratePerKwh || 0)}
+                  {isLoadingStripeData ? (
+                    <LoadingSkeleton width="w-16" />
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      {displayRatePerKwh}
+                      <span className="text-xs text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Stripe</span>
+                    </span>
+                  )}
                 </span>
               </div>
 
@@ -123,7 +154,14 @@ const PaymentPage = () => {
               <div className="flex justify-between items-center py-4 mt-2 bg-gray-50 rounded-lg px-4 -mx-2">
                 <span className="text-lg font-semibold text-foreground">Total Amount</span>
                 <span className="text-2xl font-bold text-primary">
-                  {formatCurrency(invoice?.amount)}
+                  {isLoadingStripeData ? (
+                    <LoadingSkeleton width="w-24" />
+                  ) : (
+                    <span className="flex flex-col items-end">
+                      {displayTotalAmount}
+                      <span className="text-xs text-blue-600 bg-blue-50 px-2 py-0.5 rounded mt-1">From Stripe</span>
+                    </span>
+                  )}
                 </span>
               </div>
             </div>
@@ -172,7 +210,7 @@ const PaymentPage = () => {
           ) : (
             <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
               <h2 className="text-lg font-semibold text-foreground mb-6">Payment Details</h2>
-              <CheckoutForm invoiceId={id} />
+              <CheckoutForm invoiceId={id} onSessionCreated={handleSessionCreated} />
             </div>
           )}
         </div>
