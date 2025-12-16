@@ -1,4 +1,5 @@
-import { Settings, Zap } from "lucide-react";
+
+import { Settings, Zap, LayoutDashboard } from "lucide-react";
 import { Link, useLocation } from "react-router";
 import {
   Sidebar,
@@ -13,6 +14,11 @@ import {
 
 // Menu items for admin navigation.
 const items = [
+  {
+    title: "Dashboard",
+    url: "/admin/dashboard",
+    icon: <LayoutDashboard className="w-8 h-8" size={32} />,
+  },
   {
     title: "Solar Units",
     url: "/admin/solar-units",

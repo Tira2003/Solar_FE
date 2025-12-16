@@ -129,6 +129,24 @@ export const api = createApi({
       }),
       invalidatesTags: ['Anomalies', 'AnomalyStats'],
     }),
+    // Admin Dashboard endpoints
+    getAdminDashboardStats: build.query({
+      query: () => `/admin/dashboard-stats`,
+      providesTags: ['AdminStats'],
+    }),
+    getAdminEnergyGeneration: build.query({
+      query: ({ groupBy = 'day', limit = 7 } = {}) => 
+        `/admin/energy-generation?groupBy=${groupBy}&limit=${limit}`,
+      providesTags: ['AdminEnergy'],
+    }),
+    getAdminPendingInvoices: build.query({
+      query: ({ limit = 10 } = {}) => `/admin/pending-invoices?limit=${limit}`,
+      providesTags: ['AdminInvoices'],
+    }),
+    getAdminCriticalAnomalies: build.query({
+      query: ({ limit = 10 } = {}) => `/admin/critical-anomalies?limit=${limit}`,
+      providesTags: ['AdminAnomalies'],
+    }),
   }),
 });
 
@@ -155,4 +173,9 @@ export const {
   useTriggerSyncMutation,
   useTriggerDetectMutation,
   useTriggerSyncAndDetectMutation,
+  // Admin Dashboard hooks
+  useGetAdminDashboardStatsQuery,
+  useGetAdminEnergyGenerationQuery,
+  useGetAdminPendingInvoicesQuery,
+  useGetAdminCriticalAnomaliesQuery,
 } = api;

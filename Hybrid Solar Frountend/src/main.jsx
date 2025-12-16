@@ -24,6 +24,7 @@ import AnomaliesPage from "./pages/anomalies/anomalies.page.jsx";
 import InvoicesPage from "./pages/invoices/invoices.page.jsx";
 import PaymentPage from "./pages/invoices/payment.page.jsx";
 import PaymentCompletePage from "./pages/invoices/complete.page.jsx";
+import AdminDashboardPage from "./pages/admin/admin-dashboard.page.jsx";
 
 
 import { store } from "@/lib/redux/store.js";
@@ -60,6 +61,7 @@ createRoot(document.getElementById("root")).render(
                 <Route element={<AuthorizedLayout />}>
                   <Route element={<AdminLayout />}>
                     <Route path="/admin" element={<AdminPage />} />
+                    <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
                     <Route path="/admin/solar-units" element={<SolarUnitsPage />} />
                     <Route path="/admin/solar-units/:id" element={<SolarUnitDetailPage />} />
                     <Route path="/admin/solar-units/:id/edit" element={<SolarUnitEditPage />} />
