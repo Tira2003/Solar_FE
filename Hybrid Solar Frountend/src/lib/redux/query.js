@@ -66,6 +66,48 @@ export const api = createApi({
     getSessionStatus: build.query({
       query: (sessionId) => `/payments/session-status?session_id=${sessionId}`,
     }),
+    // Anomaly endpoints
+    getAnomalies: build.query({
+      query: ({ type, severity, status } = {}) => {
+        const params = new URLSearchParams();
+        if (type) params.append('type', type);
+        if (severity) params.append('severity', severity);
+        if (status) params.append('status', status);
+        const queryString = params.toString();
+        return `/anomalies${queryString ? `?${queryString}` : ''}`;
+      },
+      providesTags: ['Anomalies'],
+    }),
+    getAnomalyStats: build.query({
+      query: () => `/anomalies/stats`,
+      providesTags: ['AnomalyStats'],
+    }),
+    getAnomaliesAdmin: build.query({
+      query: ({ type, severity, status } = {}) => {
+        const params = new URLSearchParams();
+        if (type) params.append('type', type);
+        if (severity) params.append('severity', severity);
+        if (status) params.append('status', status);
+        const queryString = params.toString();
+        return `/anomalies/admin/all${queryString ? `?${queryString}` : ''}`;
+      },
+      providesTags: ['Anomalies'],
+    }),
+    acknowledgeAnomaly: build.mutation({
+      query: (id) => ({
+        url: `/anomalies/${id}/acknowledge`,
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Anomalies', 'AnomalyStats'],
+    }),
+    resolveAnomaly: build.mutation({
+      query: ({ id, notes }) => ({
+        url: `/anomalies/${id}/resolve`,
+        method: 'PUT',
+        body: { notes },
+      }),
+      invalidatesTags: ['Anomalies', 'AnomalyStats'],
+    }),
   }),
 });
 
@@ -81,5 +123,11 @@ export const {
   useGetInvoicesQuery,
   useGetInvoiceByIdQuery,
   useCreatePaymentSessionMutation,
-  useGetSessionStatusQuery
+  useGetSessionStatusQuery,
+  // Anomaly hooks
+  useGetAnomaliesQuery,
+  useGetAnomalyStatsQuery,
+  useGetAnomaliesAdminQuery,
+  useAcknowledgeAnomalyMutation,
+  useResolveAnomalyMutation,
 } = api;
