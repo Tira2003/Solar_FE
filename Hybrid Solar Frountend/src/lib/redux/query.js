@@ -108,6 +108,27 @@ export const api = createApi({
       }),
       invalidatesTags: ['Anomalies', 'AnomalyStats'],
     }),
+    // Manual trigger endpoints for testing
+    triggerSync: build.mutation({
+      query: () => ({
+        url: `/anomalies/trigger/sync`,
+        method: 'POST',
+      }),
+    }),
+    triggerDetect: build.mutation({
+      query: () => ({
+        url: `/anomalies/trigger/detect`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['Anomalies', 'AnomalyStats'],
+    }),
+    triggerSyncAndDetect: build.mutation({
+      query: () => ({
+        url: `/anomalies/trigger/sync-and-detect`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['Anomalies', 'AnomalyStats'],
+    }),
   }),
 });
 
@@ -130,4 +151,8 @@ export const {
   useGetAnomaliesAdminQuery,
   useAcknowledgeAnomalyMutation,
   useResolveAnomalyMutation,
+  // Trigger hooks
+  useTriggerSyncMutation,
+  useTriggerDetectMutation,
+  useTriggerSyncAndDetectMutation,
 } = api;
