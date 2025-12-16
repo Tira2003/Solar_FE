@@ -38,7 +38,7 @@ export function StatCard({
   return (
     <div
       className={cn(
-        "relative rounded-xl border p-5 shadow-sm transition-all hover:shadow-md",
+        "relative rounded-xl border p-5 shadow-sm transition-all hover:shadow-md h-full min-h-[140px] flex flex-col justify-between",
         variantStyles[variant],
         className
       )}

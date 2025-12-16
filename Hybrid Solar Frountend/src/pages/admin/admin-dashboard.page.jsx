@@ -70,8 +70,8 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Right Column - Stats Cards */}
-        <div className="lg:col-span-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="lg:col-span-2 h-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-4 h-full">
             {/* Solar Unit Status Cards */}
             <StatCard
               title="Active Units"
