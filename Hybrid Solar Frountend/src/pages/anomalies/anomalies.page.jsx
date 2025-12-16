@@ -1,4 +1,4 @@
-import { useGetSolarUnitForUserQuery, useGetAnomaliesQuery, useGetAnomalyStatsQuery } from "@/lib/redux/query";
+import { useGetSolarUnitForUserQuery, useGetAnomaliesQuery, useGetAnomalyStatsQuery, useTriggerSyncAndDetectMutation } from "@/lib/redux/query";
 import DataCard from "./components/DataCard";
 import AnomalyList from "./components/AnomalyList";
 import AnomalyChart from "./components/AnomalyChart";
@@ -7,8 +7,9 @@ import AnomalyStatsCard from "./components/AnomalyStatsCard";
 import { useUser } from "@clerk/clerk-react";
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlertTriangle, BarChart3, Activity } from "lucide-react";
+import { AlertTriangle, BarChart3, Activity, RefreshCw } from "lucide-react";
 
 const AnomaliesPage = () => {
   const { user, isLoaded } = useUser();
@@ -18,10 +19,26 @@ const AnomaliesPage = () => {
   const { data: solarUnit, isLoading: isLoadingSolarUnit, isError: isErrorSolarUnit, error: errorSolarUnit } = useGetSolarUnitForUserQuery();
   
   // Fetch anomalies from backend with filters
-  const { data: anomalies, isLoading: isLoadingAnomalies } = useGetAnomaliesQuery(filters);
+  const { data: anomalies, isLoading: isLoadingAnomalies, refetch: refetchAnomalies } = useGetAnomaliesQuery(filters);
   
   // Fetch anomaly stats
-  const { data: stats, isLoading: isLoadingStats } = useGetAnomalyStatsQuery();
+  const { data: stats, isLoading: isLoadingStats, refetch: refetchStats } = useGetAnomalyStatsQuery();
+
+  // Manual trigger for sync and detect
+  const [triggerSyncAndDetect, { isLoading: isSyncing }] = useTriggerSyncAndDetectMutation();
+
+  const handleSyncAndDetect = async () => {
+    try {
+      console.log("Triggering sync and detect...");
+      await triggerSyncAndDetect().unwrap();
+      console.log("Sync and detect completed, refetching data...");
+      refetchAnomalies();
+      refetchStats();
+    } catch (error) {
+      console.error("Sync and detect failed:", error);
+      alert("Sync and detect failed. Check the console for details.");
+    }
+  };
 
   if (isLoadingSolarUnit) {
     return (
@@ -49,11 +66,21 @@ const AnomaliesPage = () => {
   return (
     <main className="mt-4 p-4">
       {/* Page Header */}
-      <div className="mb-6">
-        <h1 className="text-4xl font-bold text-foreground">{user?.firstName}'s Anomaly Dashboard</h1>
-        <p className="text-gray-600 mt-2">
-          Monitor and manage anomalies detected in your solar energy system
-        </p>
+      <div className="mb-6 flex items-start justify-between">
+        <div>
+          <h1 className="text-4xl font-bold text-foreground">{user?.firstName}'s Anomaly Dashboard</h1>
+          <p className="text-gray-600 mt-2">
+            Monitor and manage anomalies detected in your solar energy system
+          </p>
+        </div>
+        <Button
+          onClick={handleSyncAndDetect}
+          disabled={isSyncing}
+          className="bg-blue-600 hover:bg-blue-700 text-white"
+        >
+          <RefreshCw className={`w-4 h-4 mr-2 ${isSyncing ? 'animate-spin' : ''}`} />
+          {isSyncing ? 'Syncing...' : 'Sync & Detect'}
+        </Button>
       </div>
 
       {/* Stats Overview */}
