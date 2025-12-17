@@ -3,6 +3,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+body {
+  font-family: "Vend Sans", sans-serif;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

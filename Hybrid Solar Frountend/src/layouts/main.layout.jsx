@@ -1,10 +1,12 @@
-import Navigation from "@/components/Navigation/Navigation";
+
+import Navbar from "@/components/Navigation/navbar";
 import { Outlet } from "react-router";
 
 export default function MainLayout() {
   return (
     <>
-      <Navigation />
+      
+      <Navbar />
       <Outlet />
     </>
   );

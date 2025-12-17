@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router";
 
-import HomePage from "./pages/home/home.page.jsx";
+import HomePage from "./pages/home/homepage";
 import DashboardPage from "./pages/dashboard/dashboard.page.jsx";
 
 import RootLayout from "./layouts/root.layout.jsx";
