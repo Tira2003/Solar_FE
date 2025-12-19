@@ -19,7 +19,7 @@ import { useGetEnergyGenerationRecordsBySolarUnitQuery } from "@/lib/redux/query
 const DataChart = ({ solarUnitId }) => {
   const [selectedRange, setSelectedRange] = useState("7");
 
-  const { data, isLoading, isError, error } =
+  const { data, isLoading, isError } =
     useGetEnergyGenerationRecordsBySolarUnitQuery({
       id: solarUnitId,
       groupBy: "date",
@@ -55,9 +55,9 @@ const DataChart = ({ solarUnitId }) => {
   const title = "Energy Production Chart";
 
   return (
-    <Card className="rounded-md p-4">
-      <div className="flex justify-between items-center gap-2">
-        <h2 className="text-xl font-medium text-foreground">{title}</h2>
+    <Card className="rounded-2xl p-6 bg-white border border-gray-200">
+      <div className="flex justify-between items-center gap-2 mb-6">
+        <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
         <div>
           <Select value={selectedRange} onValueChange={handleRangeChange}>
             <SelectTrigger className="w-[180px]">
@@ -73,16 +73,17 @@ const DataChart = ({ solarUnitId }) => {
           </Select>
         </div>
       </div>
-      <div>
-        <ChartContainer config={chartConfig}>
+      <div className="h-64 overflow-hidden">
+        <ChartContainer config={chartConfig} className="h-full w-full">
           <AreaChart
             accessibilityLayer
             data={lastSelectedRangeDaysEnergyProduction}
+            height={200}
             margin={{
-              left: 40,
-              right: 20,
-              top: 20,
-              bottom: 20,
+              left: 20,
+              right: 10,
+              top: 10,
+              bottom: 10,
             }}
           >
             <CartesianGrid vertical={false} />
