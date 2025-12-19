@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from '@/Components/home/ui/card'
+import { Card, CardContent, CardHeader } from '@/components/home/ui/card'
 import { Home, Activity, Zap, Wallet } from 'lucide-react'
 
 export default function Features() {
