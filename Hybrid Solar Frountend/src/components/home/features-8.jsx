@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@/Components/home/card2'
+import { Card, CardContent } from '@/components/home/card2'
 import { Shield, Users } from 'lucide-react'
 import { Activity,Headphones, TrendingUp, Zap,  } from "lucide-react";
 
