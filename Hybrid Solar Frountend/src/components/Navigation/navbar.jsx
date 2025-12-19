@@ -4,6 +4,7 @@ import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
 import { Button } from '@/components/ui/button';
 import logo from '/assets/icons/logo.png';
 
+
 function Navbar() {
   const [hoveredTab, setHoveredTab] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,7 +27,7 @@ function Navbar() {
   ];
 
   return (
-    <nav className={`fixed left-1/2 -translate-x-1/2 w-[50%] max-w-5xl z-50 transition-all duration-300 ${
+    <nav className={`fixed left-1/2 -translate-x-1/2 w-[50%] max-w-6xl z-50 transition-all duration-300 ${
       isScrolled ? 'top-0' : 'top-8'
     }`}>
       <div className="relative px-6 py-[6px] bg-white/10 backdrop-blur-2xl rounded-[28px] border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.12)]">
@@ -52,7 +53,7 @@ function Navbar() {
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className="relative px-4 py-3 text-gray-800 text-sm font-medium no-underline transition-all duration-300 group"
+                className="relative px-4 py-3 text-gray-800 text-sm font-medium  transition-all duration-300 group "
                 onMouseEnter={() => setHoveredTab(item.id)}
                 onMouseLeave={() => setHoveredTab(null)}
               >
@@ -82,7 +83,7 @@ function Navbar() {
           <SignedIn>
             <Link
               to="/dashboard"
-              className="hidden sm:flex items-center gap-2 px-4 py-2 text-gray-800 text-sm font-medium no-underline rounded-2xl overflow-hidden group transition-all duration-300 hover:text-gray-900 bg-white/20 hover:bg-white/40"
+              className="hidden sm:flex items-center gap-2 px-4 py-2 text-gray-800 text-sm font-medium no-underline rounded-2xl overflow-hidden group transition-all duration-300 bg-gradient-to-r from-blue-100/60 to-blue-400/80hover:text-gray-900 bg-white/20 hover:bg-white/40 border border-white/20"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +111,7 @@ function Navbar() {
             <SignedOut>
               <Button
                 asChild
-                className="hidden sm:block relative px-5 py-2 text-sm font-medium no-underline rounded-2xl overflow-hidden transition-all duration-300 bg-white/30 hover:bg-white/50 text-gray-800 hover:text-gray-900 border-none"
+                className="hidden sm:block relative px-5 py-2 text-sm font-medium no-underline rounded-2xl overflow-hidden transition-all duration-300 bg-white/30 hover:bg-white/50 text-gray-800 border-1 border-white/50 hover:text-gray-900 "
               >
                 <Link to="/sign-in">
                   Sign In
@@ -119,7 +120,7 @@ function Navbar() {
               
               <Button
                 asChild
-                className="relative px-6 py-2 bg-gradient-to-r from-gray-100 to-gray-800 text-white text-sm font-medium no-underline rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,0,0,0.3)] hover:-translate-y-0.5 border-none"
+                className="relative px-6 py-2 bg-gradient-to-r from-blue-100/60 to-blue-400/80 text-white text-sm font-medium no-underline rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-blue-400/20 border-1 border-white/50 hover:-translate-y-0.5 "
               >
                 <Link to="/sign-up">
                   Sign Up
@@ -128,8 +129,8 @@ function Navbar() {
             </SignedOut>
             
             <SignedIn>
-              <div className="backdrop-blur-sm bg-white/20 rounded-full p-1 border border-white/30">
-                <UserButton />
+              <div className="rounded-full p-0.4">
+                <UserButton  />
               </div>
             </SignedIn>
           </div>

@@ -1,6 +1,7 @@
 import houseImage from './assests/house.png';
 import LightRays from './lightrays';
-
+import Button2 from '../../../components/home/ui/button2';
+import Button1 from '../../../components/home/ui/button1';
 import PulseBeams from './PulseBeams';
 
 function HeroSection() {
@@ -82,12 +83,7 @@ function HeroSection() {
             Sign Up
           </a> 
 
-          <a
-            href="#trial"
-            className="px-8 py-3.5 bg-white text-gray-900 text-base font-medium rounded-xl hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 no-underline"
-          >
-            Get Solar
-          </a> 
+         <Button2 >Get Solar</Button2>
         </div>
       </div>
 

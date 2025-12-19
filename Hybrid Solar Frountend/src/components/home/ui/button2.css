@@ -1,0 +1,126 @@
+/* Button2 - Secondary Glassmorphism Button with Animated Blue Gradient */
+.glass-button-2 {
+  position: relative;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(111, 152, 241, 0.851), rgba(35, 79, 199, 0.8), rgba(59, 102, 245, 0.9));
+  background-size: 200% 200%;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 14px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 
+    0 8px 32px 0 rgb(29, 86, 209),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.1);
+  outline: none;
+  animation: gradientShift 3s ease infinite;
+}
+
+.glass-button-2__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.glass-button-2__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.glass-button-2__shimmer {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shimmer 3s infinite;
+  z-index: 1;
+}
+
+/* Gradient Animation */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+
+
+/* Hover Effects */
+.glass-button-2:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 16px 48px 0 rgba(37, 99, 235, 0.45),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
+  animation: gradientShift 1.5s ease infinite;
+}
+
+/* Active/Click Effects */
+.glass-button-2:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 
+    0 6px 24px 0 rgba(37, 99, 235, 0.35),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Disabled State */
+.glass-button-2:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  animation: none;
+}
+
+.glass-button-2:disabled:hover {
+  transform: none;
+  box-shadow: 
+    0 8px 32px 0 rgba(37, 99, 235, 0.35),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.glass-button-2:disabled .glass-button-2__shimmer {
+  animation: none;
+}
+
+/* Focus State for Accessibility */
+.glass-button-2:focus-visible {
+  outline: 2px solid rgba(96, 165, 250, 0.7);
+  outline-offset: 3px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .glass-button-2 {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+  
+  .glass-button-2__icon {
+    font-size: 16px;
+  }
+}
