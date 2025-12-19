@@ -5,7 +5,7 @@ import PulseBeams from './PulseBeams';
 
 function HeroSection() {
   return (
-    <section className="relative w-full overflow-hidden">
+    <section id="home" className="relative w-full overflow-hidden">
       {/* Blue Gradient Background - extends beyond viewport with curve at bottom */}
       <div className="absolute inset-0 h-[128vh]">
         <div 
@@ -45,7 +45,7 @@ function HeroSection() {
       </div>
 
       {/* Content - Text Section */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-145 px-6 pt-14 pb-5">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-145 px-6 pt-32 pb-5">
         {/* Badge */}
         <div className="flex items-center gap-2 px-4 py-2 mb-8 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full shadow-sm">
           <span className="flex items-center justify-center w-6 h-6 bg-white/20 rounded-md">
@@ -79,10 +79,10 @@ function HeroSection() {
             href="#trial"
             className="px-8 py-3.5 bg-white text-gray-900 text-base font-medium rounded-xl hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 no-underline"
           >
-            Start free trial
+            Sign Up
           </a>
           <Button 
-            title="Request Access"
+            title="Get Solar Unit"
           />
         </div>
       </div>

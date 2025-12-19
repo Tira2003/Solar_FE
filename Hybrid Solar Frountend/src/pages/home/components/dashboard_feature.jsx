@@ -1,6 +1,6 @@
 import React from 'react';
 import dashboardImg from './assests/dashboard.webp';
-import Button from '@/components/home/button3';
+
 
 // Check icon component
 const CheckIcon = () => (
@@ -49,6 +49,7 @@ const DashboardFeature = () => {
               >
                 Go to Dashboard
               </button>
+
             </div>
           </div>
         </div>

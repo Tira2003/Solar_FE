@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
 import { Button } from '@/components/ui/button';
@@ -6,17 +6,29 @@ import logo from '/assets/icons/logo.png';
 
 function Navbar() {
   const [hoveredTab, setHoveredTab] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
-    { id: 'product', label: 'Product' },
-    { id: 'solutions', label: 'Solutions' },
-    { id: 'resources', label: 'Resources' },
-    { id: 'docs', label: 'Docs' },
-    { id: 'pricing', label: 'Pricing' }
+    { id: 'home', label: 'Home' },
+    { id: 'features', label: 'Feature' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'pricing', label: 'Pricing' },
+    { id: 'contact', label: 'Contact' }
   ];
 
   return (
-    <nav className="fixed top-8 left-1/2 -translate-x-1/2 w-[50%] max-w-5xl z-50">
+    <nav className={`fixed left-1/2 -translate-x-1/2 w-[50%] max-w-5xl z-50 transition-all duration-300 ${
+      isScrolled ? 'top-0' : 'top-8'
+    }`}>
       <div className="relative px-6 py-[6px] bg-white/10 backdrop-blur-2xl rounded-[28px] border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.12)]">
         {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-[28px] pointer-events-none" />

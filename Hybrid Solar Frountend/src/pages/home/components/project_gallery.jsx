@@ -76,7 +76,8 @@ const galleryItems = [
 
 export default function ProjectGallery() {
   return (
-    <section className="py-16 md:py-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
+
+    <section id="projects" className="py-16 md:py-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
       <h2 className="text-3xl md:text-5xl font-semibold text-gray-900 text-center mb-12">Our Projects</h2>
       <div className="relative" style={{ minHeight: '600px' }}>
         {/* CountUp centered in the middle of the gallery */}
