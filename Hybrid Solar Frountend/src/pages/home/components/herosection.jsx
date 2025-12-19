@@ -53,24 +53,24 @@ function HeroSection() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </span>
-          <span className="text-sm font-medium text-white">New</span>
-          <span className="text-sm text-white/80">Adaptive Campaign Engine v2.0</span>
+          <span className="text-sm font-medium text-white"></span>
+          <span className="text-sm text-white/80">Powering 10,000+ homes nationwide</span>
         </div>
 
         {/* Main Heading */}
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold text-center text-white leading-tight tracking-tight mb-6 max-w-4xl">
-          Marketing That
+        <h1 className="text-5xl md:text-6xl lg:text-7xl  text-center text-white leading-tight tracking-tight mb-6 max-w-4xl">
+          Clean Energy for Your 
           <br />
           <span className="text-white">
-            Adapts In Real Time
+            Home, Zero Hassle
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl text-white/80 text-center max-w-2xl mb-10 leading-relaxed">
-          Modula creates, tests, and personalizes campaigns
+        <p className="text-lg md:text-xl text-white/80 text-center max-w-3xl mb-10 leading-relaxed">
+          Get solar panels installed at no upfront cost. Pay only for the energy you generate.   
           <br className="hidden md:block" />
-          automatically, learning from every click and conversion.
+          Real-time monitoring, AI-powered maintenance, and 24/7 support included.
         </p>
 
         {/* CTA Buttons */}

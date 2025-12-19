@@ -12,10 +12,10 @@ function Card({
       className={cn(
         "group relative flex flex-col gap-6 rounded-xl py-6 overflow-hidden",
         // Glassmorphism effect
-        "backdrop-blur-md border border-blue-400/30 bg-gradient-to-r from-blue-500/20 to-blue-500/40",
+        "backdrop-blur-md border border-blue-300/20 bg-gradient-to-r from-blue-600/80 to-blue-600/40",
         // Shadow and hover effects
         "shadow-lg hover:shadow-blue-500/25 hover:shadow-xl",
-        "hover:bg-blue-500/20 hover:border-blue-400/50",
+        "hover:bg-blue-500 hover:border-blue-400/50",
         // Scale and transform on hover
         "hover:scale-[1.02] hover:-translate-y-1",
         // Smooth transitions
