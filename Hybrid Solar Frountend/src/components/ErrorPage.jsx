@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router';
 const ErrorPage = ({ 
   title = "Oops! Something went wrong", 
   message = "We're having trouble connecting to our servers. Please try again later.",
-  errorDetails = null,
   showHomeButton = true,
   showRetryButton = true,
   onRetry = null 
