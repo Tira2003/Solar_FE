@@ -16,7 +16,8 @@ const Footer = () => {
                 <div className='max-w-80'>
                     <div className='flex items-center gap-2 mb-4'>
                         <img src={logo} alt="logo" className='h-16 md:h-20' />
-                        <span className='text-white font-bold text-xl md:text-2xl'>Energy</span>
+                        <span className='text-white font-semibold text-xl md:text-xl'><br />Energy</span>
+                        
                     </div>
                     <p className='text-sm'>
                         Making clean energy accessible and affordable for every home.Join with us to make a difference.

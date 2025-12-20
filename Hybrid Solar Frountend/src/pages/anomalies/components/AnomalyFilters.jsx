@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Filter, X } from "lucide-react";
+import { Filter, X, ChevronDown } from "lucide-react";
+import Dropdown, { DropdownItem } from "@/components/dropdown";
 
 const SEVERITY_OPTIONS = [
   { value: "", label: "All Severities" },
@@ -32,6 +33,11 @@ const AnomalyFilters = ({ filters, onFilterChange, stats }) => {
     onFilterChange({ type: "", severity: "", status: "" });
   };
 
+  const getSelectedLabel = (options, value) => {
+    const option = options.find(opt => opt.value === value);
+    return option ? option.label : options[0].label;
+  };
+
   return (
     <Card className="p-4 mb-6">
       <div className="flex flex-wrap items-center gap-4">
@@ -41,43 +47,64 @@ const AnomalyFilters = ({ filters, onFilterChange, stats }) => {
         </div>
 
         {/* Severity Filter */}
-        <select
-          value={filters.severity || ""}
-          onChange={(e) => onFilterChange({ ...filters, severity: e.target.value })}
-          className="px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        <Dropdown
+          trigger={
+            <button className="px-3 py-2 border border-blue-200 rounded-lg text-sm bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center gap-2 min-w-[140px] justify-between transition-colors">
+              <span>{getSelectedLabel(SEVERITY_OPTIONS, filters.severity)}</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
+          }
+          width="w-48"
         >
           {SEVERITY_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
+            <DropdownItem
+              key={option.value}
+              onClick={() => onFilterChange({ ...filters, severity: option.value })}
+            >
               {option.label}
-            </option>
+            </DropdownItem>
           ))}
-        </select>
+        </Dropdown>
 
         {/* Type Filter */}
-        <select
-          value={filters.type || ""}
-          onChange={(e) => onFilterChange({ ...filters, type: e.target.value })}
-          className="px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        <Dropdown
+          trigger={
+            <button className="px-3 py-2 border border-blue-200 rounded-lg text-sm bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center gap-2 min-w-[160px] justify-between transition-colors">
+              <span>{getSelectedLabel(TYPE_OPTIONS, filters.type)}</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
+          }
+          width="w-56"
         >
           {TYPE_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
+            <DropdownItem
+              key={option.value}
+              onClick={() => onFilterChange({ ...filters, type: option.value })}
+            >
               {option.label}
-            </option>
+            </DropdownItem>
           ))}
-        </select>
+        </Dropdown>
 
         {/* Status Filter */}
-        <select
-          value={filters.status || ""}
-          onChange={(e) => onFilterChange({ ...filters, status: e.target.value })}
-          className="px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        <Dropdown
+          trigger={
+            <button className="px-3 py-2 border border-blue-200 rounded-lg text-sm bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center gap-2 min-w-[140px] justify-between transition-colors">
+              <span>{getSelectedLabel(STATUS_OPTIONS, filters.status)}</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
+          }
+          width="w-48"
         >
           {STATUS_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
+            <DropdownItem
+              key={option.value}
+              onClick={() => onFilterChange({ ...filters, status: option.value })}
+            >
               {option.label}
-            </option>
+            </DropdownItem>
           ))}
-        </select>
+        </Dropdown>
 
         {/* Clear Filters */}
         {hasActiveFilters && (
@@ -98,15 +125,15 @@ const AnomalyFilters = ({ filters, onFilterChange, stats }) => {
             {stats.byStatus && (
               <>
                 <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-red-500" />
+                  <span className="w-2 h-2 rounded-full bg-blue-600" />
                   Active: {stats.byStatus.active}
                 </span>
                 <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-yellow-500" />
+                  <span className="w-2 h-2 rounded-full bg-blue-400" />
                   Acknowledged: {stats.byStatus.acknowledged}
                 </span>
                 <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-green-500" />
+                  <span className="w-2 h-2 rounded-full bg-cyan-500" />
                   Resolved: {stats.byStatus.resolved}
                 </span>
               </>

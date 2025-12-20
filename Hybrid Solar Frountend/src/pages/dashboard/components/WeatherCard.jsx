@@ -60,49 +60,35 @@ const WeatherCard = () => {
     <div>
       <div className="w-full max-w-sm">
         {/* Main Card */}
-        <div className="backdrop-blur-xl bg-gradient-to-br from-blue-900/70 via-blue-700/60 to-cyan-600/50 rounded-2xl p-5 border border-white/20 ">
+        <div className="backdrop-blur-xl bg-gradient-to-br from-blue-900/70 via-blue-700/60 to-cyan-600/50 rounded-2xl p-4 border border-white/20 ">
           {/* Header */}
-          <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center justify-between mb-3">
             <div>
-              <h1 className="text-white text-lg font-semibold mb-0.5">
+              <h1 className="text-white text-base font-semibold mb-0.5">
                 Energy & Weather
               </h1>
-              <p className="text-white text-base font-semibold">Forecast</p>
+              <p className="text-white text-sm font-semibold">Forecast</p>
             </div>
-            <button className="px-3 py-1.5 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/30">
+            <button className="px-2.5 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/30">
               Today
             </button>
           </div>
 
           {/* Main Stats */}
-          <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center justify-between mb-4">
             {/* Temperature */}
             <div>
-              <div className="text-7xl  text-white mb-1">
+              <div className="text-5xl text-white mb-1">
                 {Math.round(current.temperature)}°C
               </div>
             </div>
 
             {/* Solar Output */}
-            <div className="flex flex-col items-center">
-              <CircularProgress
-                value={solarImpact.efficiency}
-                size={90}
-                strokeWidth={10}
-                showLabel
-                className="stroke-white/25"
-                progressClassName="stroke-yellow-400"
-                labelClassName="text-xl  text-white"
-                renderLabel={(value) => `${value}%`}
-              />
-              <div className="text-white text-center mt-2">
-                <div className="text-sm font-bold opacity-80">Solar Energy Output</div>
-              </div>
-            </div>
+            
           </div>
 
           {/* Weather Metrics Grid */}
-          <div className="backdrop-blur-md bg-white/10 rounded-xl p-4 border border-white/20">
+          <div className="backdrop-blur-md bg-white/10 rounded-xl p-3 border border-white/20">
             <div className="grid grid-cols-2 gap-4">
               {/* Humidity */}
               <div className="flex items-center gap-2">

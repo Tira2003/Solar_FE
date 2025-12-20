@@ -40,11 +40,11 @@ const InvoicesPage = () => {
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
       case "paid":
-        return "bg-green-100 text-green-800 border-green-200";
+        return "bg-cyan-100 text-cyan-800 border-cyan-300";
       case "pending":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200";
+        return "bg-blue-100 text-blue-800 border-blue-300";
       case "overdue":
-        return "bg-red-100 text-red-800 border-red-200";
+        return "bg-blue-200 text-blue-900 border-blue-400";
       default:
         return "bg-gray-100 text-gray-800 border-gray-200";
     }
@@ -73,15 +73,15 @@ const InvoicesPage = () => {
         {/* Status Filter */}
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-600">Filter:</span>
-          <div className="flex rounded-lg border border-gray-200 overflow-hidden">
+          <div className="flex rounded-lg border border-blue-200 overflow-hidden">
             {["all", "pending", "paid"].map((status) => (
               <button
                 key={status}
                 onClick={() => setStatusFilter(status)}
                 className={`px-4 py-2 text-sm font-medium capitalize transition-colors ${
                   statusFilter === status
-                    ? "bg-primary text-white"
-                    : "bg-white text-gray-700 hover:bg-gray-50"
+                    ? "bg-blue-600 text-white"
+                    : "bg-white text-gray-700 hover:bg-blue-50"
                 }`}
               >
                 {status}
@@ -93,19 +93,19 @@ const InvoicesPage = () => {
 
       {/* Invoice Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-        <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+        <div className="bg-white rounded-xl border border-blue-200 p-6 shadow-sm">
           <p className="text-sm text-gray-600">Total Invoices</p>
-          <p className="text-2xl font-bold text-foreground mt-1">{invoices?.length || 0}</p>
+          <p className="text-2xl font-bold text-blue-900 mt-1">{invoices?.length || 0}</p>
         </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+        <div className="bg-white rounded-xl border border-blue-200 p-6 shadow-sm">
           <p className="text-sm text-gray-600">Pending Payment</p>
-          <p className="text-2xl font-bold text-yellow-600 mt-1">
+          <p className="text-2xl font-bold text-blue-700 mt-1">
             {invoices?.filter((i) => i.status?.toLowerCase() === "pending").length || 0}
           </p>
         </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+        <div className="bg-white rounded-xl border border-cyan-200 p-6 shadow-sm">
           <p className="text-sm text-gray-600">Paid</p>
-          <p className="text-2xl font-bold text-green-600 mt-1">
+          <p className="text-2xl font-bold text-cyan-700 mt-1">
             {invoices?.filter((i) => i.status?.toLowerCase() === "paid").length || 0}
           </p>
         </div>
@@ -181,14 +181,14 @@ const InvoicesPage = () => {
                 <div className="flex items-center gap-3">
                   <Link
                     to={`/dashboard/invoices/${invoice._id}`}
-                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                    className="px-4 py-2 text-sm font-medium text-blue-700 bg-blue-50 rounded-lg hover:bg-blue-100 border border-blue-200 transition-colors"
                   >
                     View Details
                   </Link>
                   {invoice.status?.toLowerCase() === "pending" && (
                     <Link
                       to={`/dashboard/invoices/${invoice._id}/pay`}
-                      className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary/90 transition-colors"
+                      className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
                     >
                       Pay Now
                     </Link>
