@@ -1,6 +1,7 @@
 import { Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import PriceCard from "./price_card";
 
 const comparisonData = [
   { feature: "Upfront installation cost", traditional: "$15,000 - $25,000", hybrid: "$0" },
@@ -13,7 +14,7 @@ const comparisonData = [
 
 const PricingSection = () => {
   return (
-    <section id="pricing" className="py-24">
+    <section id="pricing" className="py-24 bg-gradient-to-br from-blue-50 to-cyan-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -24,67 +25,35 @@ const PricingSection = () => {
           </p>
         </div>
 
-        {/* Main pricing card */}
-        <div className="max-w-lg mx-auto mb-16">
-          <Card className="border-2 border-primary relative overflow-hidden">
-            <CardHeader className="text-center pb-2">
-              <CardTitle className="text-2xl">Pay As You Generate</CardTitle>
-              <CardDescription>The smarter way to go solar</CardDescription>
-            </CardHeader>
-            <CardContent className="text-center">
-              <div className="mb-6">
-                <span className="text-5xl font-bold text-foreground">$0</span>
-                <span className="text-muted-foreground ml-2">upfront</span>
+        {/* Two-column layout: Comparison table on left, Price card on right */}
+        <div className="grid lg:grid-cols-2 gap-8 items-center max-w-7xl mx-auto">
+          
+          {/* Left side - Comparison table */}
+          <div className="flex flex-col justify-center">
+            <div className="bg-white rounded-xl border border-border overflow-hidden shadow-lg">
+              <div className="grid grid-cols-3 bg-blue-100 p-4 font-semibold text-foreground">
+                <div>Feature</div>
+                <div className="text-center">Traditional Solar</div>
+                <div className="text-center text-blue-600">Hybrid Energy</div>
               </div>
-              <p className="text-muted-foreground mb-6">
-                Then pay only <span className="font-semibold text-foreground">$0.08 - $0.12/kWh</span> for energy generated
-              </p>
-              <ul className="text-left space-y-3">
-                {[
-                  "Free installation & equipment",
-                  "Real-time monitoring dashboard",
-                  "AI-powered anomaly detection",
-                  "24/7 customer support",
-                  "Free maintenance for life",
-                  "25-year performance guarantee",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-3">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-            <CardFooter>
-              <Button className="w-full" size="lg">
-                Get Your Free Quote
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
-
-        {/* Comparison table */}
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-2xl font-bold text-foreground text-center mb-8">
-            Hybrid Energy vs Traditional Solar
-          </h3>
-          <div className="bg-card rounded-xl border border-border overflow-hidden">
-            <div className="grid grid-cols-3 bg-muted/50 p-4 font-semibold text-foreground">
-              <div>Feature</div>
-              <div className="text-center">Traditional Solar</div>
-              <div className="text-center text-primary">Hybrid Energy</div>
+              {comparisonData.map((row, index) => (
+                <div
+                  key={row.feature}
+                  className={`grid grid-cols-3 p-4 ${index % 2 === 0 ? "bg-white" : "bg-blue-50/30"}`}
+                >
+                  <div className="text-foreground font-medium">{row.feature}</div>
+                  <div className="text-center text-muted-foreground text-sm">{row.traditional}</div>
+                  <div className="text-center text-blue-600 font-medium text-sm">{row.hybrid}</div>
+                </div>
+              ))}
             </div>
-            {comparisonData.map((row, index) => (
-              <div
-                key={row.feature}
-                className={`grid grid-cols-3 p-4 ${index % 2 === 0 ? "bg-background" : "bg-muted/20"}`}
-              >
-                <div className="text-foreground font-medium">{row.feature}</div>
-                <div className="text-center text-muted-foreground">{row.traditional}</div>
-                <div className="text-center text-primary font-medium">{row.hybrid}</div>
-              </div>
-            ))}
           </div>
+
+          {/* Right side - Price Card */}
+          <div className="flex items-center justify-center">
+            <PriceCard />
+          </div>
+
         </div>
       </div>
     </section>

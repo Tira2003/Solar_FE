@@ -16,7 +16,7 @@ const Footer = () => {
                 <div className='max-w-80'>
                     <div className='flex items-center gap-2 mb-4'>
                         <img src={logo} alt="logo" className='h-16 md:h-20' />
-                        <span className='text-white font-semibold text-xl md:text-xl'><br />Energy</span>
+                        <span className='text-white font-semibold text-xl md:text-xl'><br /> Hybrid Energy</span>
                         
                     </div>
                     <p className='text-sm'>
@@ -61,7 +61,7 @@ const Footer = () => {
                 </div>
 
                 <div className='max-w-80'>
-                    <p className='text-lg  font-bold text-white'>STAY UPDATED</p>
+                    <p className='text-lg   text-white'>STAY UPDATED</p>
                     <p className='mt-3 text-sm'>
                         Subscribe to our newsletter for inspiration and special offers.
                     </p>

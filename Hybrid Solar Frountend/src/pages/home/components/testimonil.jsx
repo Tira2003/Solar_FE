@@ -2,23 +2,21 @@ const Testimonil = () => {
     const cardsData = [
         {
             image: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200',
-            name: 'Briar Martin',
-            handle: '@neilstellar',
+            name: 'Sarah Mitchell',
+            handle: '@sarahsolar',
+            message: 'The installation was seamless, and I started saving money from day one. The real-time monitoring app is incredible - I can see exactly how much clean energy I\'m generating.'
         },
         {
             image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200',
-            name: 'Avery Johnson',
-            handle: '@averywrites',
+            name: 'Michael Chen',
+            handle: '@mikegreen',
+            message: 'No upfront cost and only paying for what I generate? It was a no-brainer. The support team is always responsive and the AI monitoring caught a small issue before it became a problem.'
         },
         {
             image: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60',
-            name: 'Jordan Lee',
-            handle: '@jordantalks',
-        },
-        {
-            image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60',
-            name: 'Avery Johnson',
-            handle: '@averywrites',
+            name: 'Jennifer Davis',
+            handle: '@jendavis',
+            message: 'I was skeptical at first, but Hybrid Energy delivered on every promise. My energy bills are down 85% and I love knowing I\'m helping the environment.'
         },
     ];
 
@@ -36,7 +34,7 @@ const Testimonil = () => {
                     <span className="text-xs text-slate-500">{card.handle}</span>
                 </div>
             </div>
-            <p className="text-sm py-4 text-gray-800">Very detailde solar system dashboard.</p>
+            <p className="text-sm py-4 text-gray-800">{card.message}</p>
         </div>
     );
 

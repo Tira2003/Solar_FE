@@ -28,9 +28,7 @@ const ErrorPage = ({
       <div className="max-w-2xl w-full text-center">
         {/* Icon */}
         <div className="flex justify-center mb-8">
-          <div className="bg-white rounded-full p-6 shadow-lg">
-            <AlertCircle className="w-16 h-16 text-blue-600" strokeWidth={1.5} />
-          </div>
+          
         </div>
 
         {/* Title */}

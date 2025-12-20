@@ -1,6 +1,5 @@
 import HeroSection from './components/herosection';
 import FeaturesSection from '@/components/home/features-8';
-import MagicBento from '@/components/home/grid';
 import DashboardFeature from './components/dashboard_feature';
 import Testimonil from './components/testimonil';
 import Footer from '@/components/home/fotter';
@@ -10,6 +9,7 @@ import ProjectGallery from './components/project_gallery';
 import FAQSection from './components/faqsection';
 import ContactSection from './components/contact';
 import PricingSection from './components/price';
+import TechGallery from './components/tech_gallery';
 
 function HomePage() {
   return (
@@ -18,22 +18,9 @@ function HomePage() {
       <HeroSection />
       <Features />
       <FeaturesSection />
+      <TechGallery />
       <DashboardFeature />
-      <section className="py-16 md:py-24  flex justify-center">
-        <MagicBento 
-          textAutoHide={true}
-          enableStars={false}
-          enableSpotlight={true}
-          enableBorderGlow={true}
-          enableTilt={false}
-          enableMagnetism={false}
-          clickEffect={false}
-          spotlightRadius={300}
-          particleCount={0}
-          glowColor="3, 82, 251"
-        />
-
-      </section>
+      
       <EnvironmentalImpactSection />
       <ProjectGallery />
       <Testimonil />

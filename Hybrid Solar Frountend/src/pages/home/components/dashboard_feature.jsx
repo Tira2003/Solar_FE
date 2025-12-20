@@ -19,7 +19,7 @@ const DashboardFeature = () => {
   ];
 
   return (
-    <section className="py-20 bg-white overflow-hidden">
+    <section className="py-20 bg-white overflow-hidden my-30">
       <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         
         {/* Left Content */}

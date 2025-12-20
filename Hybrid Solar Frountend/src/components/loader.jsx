@@ -13,6 +13,7 @@ const Loader = () => {
             <span className="word">Anomalies</span>
             <span className="word">Payments</span>
             <span className="word">Forecast</span>
+             <span className="word">Dashboard</span>
           </div>
         </div>
       </div>
