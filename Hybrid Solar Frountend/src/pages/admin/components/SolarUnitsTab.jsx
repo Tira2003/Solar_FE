@@ -6,6 +6,7 @@ import { Zap } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
+import Loader from "@/components/loader";
 
 export function SolarUnitsTab() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,7 +15,11 @@ export function SolarUnitsTab() {
   const { data: solarUnits, isLoading: isLoadingSolarUnits, isError: isErrorSolarUnits, error: errorSolarUnits } = useGetSolarUnitsQuery();
 
   if (isLoadingSolarUnits) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader />
+      </div>
+    );
   }
 
   if (isErrorSolarUnits) {

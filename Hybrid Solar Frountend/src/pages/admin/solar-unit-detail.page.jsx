@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Zap, Calendar, Gauge, Activity } from "lucide-react";
 import { format } from "date-fns";
 import { useGetSolarUnitByIdQuery } from "@/lib/redux/query";
+import Loader from "@/components/loader";
 
 export default function SolarUnitDetailPage() {
   const { id } = useParams();
@@ -13,7 +14,11 @@ export default function SolarUnitDetailPage() {
   const { data: solarUnit, isLoading: isLoadingSolarUnit, isError: isErrorSolarUnit, error: errorSolarUnit } = useGetSolarUnitByIdQuery(id);
   
   if (isLoadingSolarUnit) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader />
+      </div>
+    );
   }
 
   if (isErrorSolarUnit) {

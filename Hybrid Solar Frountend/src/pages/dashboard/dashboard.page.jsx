@@ -6,12 +6,17 @@ import AnomalyCountCard from "./components/AnomalyCountCard";
 import PendingPaymentsCard from "./components/PendingPaymentsCard";
 import HourlyGenerationChart from "./components/HourlyGenerationChart";
 import { Filter, Download } from "lucide-react";
+import Loader from "@/components/loader";
 
 const DashboardPage = () => {
   const { data: solarUnit, isLoading: isLoadingSolarUnit, isError: isErrorSolarUnit, error: errorSolarUnit } = useGetSolarUnitForUserQuery();
 
   if (isLoadingSolarUnit) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader />
+      </div>
+    );
   }
 
   if (isErrorSolarUnit) {

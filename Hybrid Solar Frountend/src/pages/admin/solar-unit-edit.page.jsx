@@ -1,6 +1,7 @@
 import { useGetSolarUnitByIdQuery } from "@/lib/redux/query";
 import { useNavigate, useParams } from "react-router";
 import { EditSolarUnitForm } from "./components/EditSolarUnitForm";
+import Loader from "@/components/loader";
 
 export default function SolarUnitEditPage() {
   const { id } = useParams();
@@ -11,7 +12,11 @@ export default function SolarUnitEditPage() {
   console.log(solarUnit);
 
   if (isLoadingSolarUnit) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader />
+      </div>
+    );
   }
 
   if (isErrorSolarUnit) {

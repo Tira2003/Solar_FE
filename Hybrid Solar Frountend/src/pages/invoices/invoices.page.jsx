@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useGetInvoicesQuery } from "@/lib/redux/query";
 import { Link } from "react-router";
+import Loader from "@/components/loader";
 
 const InvoicesPage = () => {
   const [statusFilter, setStatusFilter] = useState("all");
@@ -14,8 +15,8 @@ const InvoicesPage = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader />
       </div>
     );
   }

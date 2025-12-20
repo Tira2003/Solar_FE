@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, Link } from "react-router";
 import { useGetInvoiceByIdQuery } from "@/lib/redux/query";
 import CheckoutForm from "./components/CheckoutForm";
+import Loader from "@/components/loader";
 
 const PaymentPage = () => {
   const { id } = useParams();
@@ -23,8 +24,8 @@ const PaymentPage = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader />
       </div>
     );
   }

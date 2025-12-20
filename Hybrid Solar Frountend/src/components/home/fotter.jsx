@@ -1,5 +1,6 @@
 import { Instagram, Facebook, Twitter, Linkedin } from 'lucide-react';
 import DarkVeil from './DarkVeil';
+import logo from '@/pages/home/components/assests/logo.png';
 
 const Footer = () => {
     return (
@@ -13,9 +14,12 @@ const Footer = () => {
             <div className='relative z-10 text-gray-300 pt-8 px-6 md:px-16 lg:px-24 xl:px-32'>
                 <div className='flex flex-wrap justify-between gap-12 md:gap-6'>
                 <div className='max-w-80'>
-                    <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/dummyLogo/dummyLogoColored.svg" alt="logo" className='mb-4 h-8 md:h-9' />
+                    <div className='flex items-center gap-2 mb-4'>
+                        <img src={logo} alt="logo" className='h-16 md:h-20' />
+                        <span className='text-white font-bold text-xl md:text-2xl'>Energy</span>
+                    </div>
                     <p className='text-sm'>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+                        Making clean energy accessible and affordable for every home.Join with us to make a difference.
                     </p>
                     <div className='flex items-center gap-3 mt-4'>
                         <a href="#" className="hover:text-gray-700 transition-colors">
@@ -71,7 +75,7 @@ const Footer = () => {
             </div>
             <hr className='border-gray-300 mt-8' />
             <div className='flex flex-col md:flex-row gap-2 items-center justify-between py-5'>
-                <p>© {new Date().getFullYear()} <a href="https://prebuiltui.com">TiraMid</a>. All rights reserved.</p>
+                <p>© {new Date().getFullYear()} <a href="">Hybrid Energy</a>. All rights reserved.</p>
                 <ul className='flex items-center gap-4'>
                     <li><a href="#">Privacy</a></li>
                     <li><a href="#">Terms</a></li>
