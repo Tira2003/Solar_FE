@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlertTriangle, BarChart3, Activity, RefreshCw } from "lucide-react";
 import Loader from "@/components/loader";
+import ErrorPage from "@/components/ErrorPage";
 
 const AnomaliesPage = () => {
   const { user, isLoaded } = useUser();
@@ -51,13 +52,11 @@ const AnomaliesPage = () => {
 
   if (isErrorSolarUnit) {
     return (
-      <main className="mt-4 p-4">
-        <Card className="p-8 text-center border-red-200 bg-red-50">
-          <AlertTriangle className="w-12 h-12 mx-auto text-red-500 mb-4" />
-          <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Data</h3>
-          <p className="text-red-600">{errorSolarUnit?.message || "Failed to load solar unit data"}</p>
-        </Card>
-      </main>
+      <ErrorPage 
+        title="Unable to Load Anomaly Data"
+        message="We couldn't retrieve your solar unit information. Please check your connection and try again."
+        errorDetails={errorSolarUnit?.data?.message || errorSolarUnit?.message}
+      />
     );
   }
 

@@ -6,6 +6,7 @@ import { ArrowLeft, Zap, Calendar, Gauge, Activity } from "lucide-react";
 import { format } from "date-fns";
 import { useGetSolarUnitByIdQuery } from "@/lib/redux/query";
 import Loader from "@/components/loader";
+import ErrorPage from "@/components/ErrorPage";
 
 export default function SolarUnitDetailPage() {
   const { id } = useParams();
@@ -22,7 +23,13 @@ export default function SolarUnitDetailPage() {
   }
 
   if (isErrorSolarUnit) {
-    return <div>Error: {errorSolarUnit.message}</div>;
+    return (
+      <ErrorPage 
+        title="Unable to Load Solar Unit Details"
+        message="We couldn't retrieve the solar unit information. Please try again."
+        errorDetails={errorSolarUnit?.data?.message || errorSolarUnit?.message}
+      />
+    );
   }
 
   const handleEdit = () => {

@@ -2,6 +2,7 @@ import { useGetSolarUnitByIdQuery } from "@/lib/redux/query";
 import { useNavigate, useParams } from "react-router";
 import { EditSolarUnitForm } from "./components/EditSolarUnitForm";
 import Loader from "@/components/loader";
+import ErrorPage from "@/components/ErrorPage";
 
 export default function SolarUnitEditPage() {
   const { id } = useParams();
@@ -20,7 +21,13 @@ export default function SolarUnitEditPage() {
   }
 
   if (isErrorSolarUnit) {
-    return <div>Error: {errorSolarUnit.message}</div>;
+    return (
+      <ErrorPage 
+        title="Unable to Load Solar Unit"
+        message="We couldn't retrieve the solar unit information. Please try again."
+        errorDetails={errorSolarUnit?.data?.message || errorSolarUnit?.message}
+      />
+    );
   }
 
   const handleEdit = () => {

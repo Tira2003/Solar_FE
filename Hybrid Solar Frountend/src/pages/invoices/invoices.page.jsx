@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useGetInvoicesQuery } from "@/lib/redux/query";
 import { Link } from "react-router";
 import Loader from "@/components/loader";
+import ErrorPage from "@/components/ErrorPage";
 
 const InvoicesPage = () => {
   const [statusFilter, setStatusFilter] = useState("all");
@@ -23,12 +24,11 @@ const InvoicesPage = () => {
 
   if (isError) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
-          <p className="text-red-500 text-lg">Failed to load invoices</p>
-          <p className="text-gray-500 mt-2">{error?.data?.message || "Please try again later"}</p>
-        </div>
-      </div>
+      <ErrorPage 
+        title="Unable to Load Invoices"
+        message="We couldn't retrieve your invoice data. Please check your connection and try again."
+        errorDetails={error?.data?.message || error?.message}
+      />
     );
   }
 

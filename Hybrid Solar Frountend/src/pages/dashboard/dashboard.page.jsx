@@ -7,6 +7,7 @@ import PendingPaymentsCard from "./components/PendingPaymentsCard";
 import HourlyGenerationChart from "./components/HourlyGenerationChart";
 import { Filter, Download } from "lucide-react";
 import Loader from "@/components/loader";
+import ErrorPage from "@/components/ErrorPage";
 
 const DashboardPage = () => {
   const { data: solarUnit, isLoading: isLoadingSolarUnit, isError: isErrorSolarUnit, error: errorSolarUnit } = useGetSolarUnitForUserQuery();
@@ -20,7 +21,13 @@ const DashboardPage = () => {
   }
 
   if (isErrorSolarUnit) {
-    return <div>Error: {errorSolarUnit.message}</div>;
+    return (
+      <ErrorPage 
+        title="Unable to Load Dashboard"
+        message="We couldn't retrieve your solar unit data. Please check your connection and try again."
+        errorDetails={errorSolarUnit?.data?.message || errorSolarUnit?.message}
+      />
+    );
   }
 
   return (

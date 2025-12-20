@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
 import Loader from "@/components/loader";
+import ErrorPage from "@/components/ErrorPage";
 
 export function SolarUnitsTab() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,7 +24,13 @@ export function SolarUnitsTab() {
   }
 
   if (isErrorSolarUnits) {
-    return <div>Error: {errorSolarUnits.message}</div>;
+    return (
+      <ErrorPage 
+        title="Unable to Load Solar Units"
+        message="We couldn't retrieve the solar units list. Please try again."
+        errorDetails={errorSolarUnits?.data?.message || errorSolarUnits?.message}
+      />
+    );
   }
 
   console.log(solarUnits);

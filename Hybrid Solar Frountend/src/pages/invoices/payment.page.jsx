@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router";
 import { useGetInvoiceByIdQuery } from "@/lib/redux/query";
 import CheckoutForm from "./components/CheckoutForm";
 import Loader from "@/components/loader";
+import ErrorPage from "@/components/ErrorPage";
 
 const PaymentPage = () => {
   const { id } = useParams();
@@ -32,18 +33,12 @@ const PaymentPage = () => {
 
   if (isError) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
-          <p className="text-red-500 text-lg">Failed to load invoice</p>
-          <p className="text-gray-500 mt-2">{error?.data?.message || "Please try again later"}</p>
-          <Link
-            to="/dashboard/invoices"
-            className="inline-block mt-4 px-4 py-2 text-sm font-medium text-primary hover:underline"
-          >
-            ← Back to Invoices
-          </Link>
-        </div>
-      </div>
+      <ErrorPage 
+        title="Unable to Load Invoice"
+        message="We couldn't retrieve this invoice. Please check the invoice ID and try again."
+        errorDetails={error?.data?.message || error?.message}
+        showRetryButton={false}
+      />
     );
   }
 
