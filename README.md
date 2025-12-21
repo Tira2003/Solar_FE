@@ -9,7 +9,6 @@ A comprehensive dashboard for monitoring solar panel performance, detecting anom
 - **Invoice Management**: Generate and manage invoices seamlessly.
 - **Secure Payments**: Integrated [Stripe](https://stripe.com/) payment processing for easy billing.
 - **User Authentication**: Secure user management powered by [Clerk](https://clerk.com/).
-- **3D Visualizations**: Immersive 3D elements built with [OGL](https://github.com/oframe/ogl).
 - **Responsive Design**: Modern, responsive UI styled with [Tailwind CSS](https://tailwindcss.com/).
 
 ## Tech Stack
