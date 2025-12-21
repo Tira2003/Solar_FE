@@ -1,12 +1,13 @@
 import gal1 from './assests/gal1.jpg';
 import gal2 from './assests/gal2.jpg';
+import gal3 from './assests/gal3.jpg';
 
 export default function TechGallery() {
     return (
         <>
             
             <h1 className="text-5xl font-semibold text-center mx-auto">Cutting-Edge Technology</h1>
-            <p className="text-sm text-center mt-4 max-w-lg mx-auto">We use only the highest quality equipment to ensure maximum efficiency
+            <p className="text-lg text-muted-foreground text-center mt-4 max-w-lg mx-auto">We use only the highest quality equipment to ensure maximum efficiency
                  and longevity for your solar system.</p>
             
             <div className="flex items-center gap-6 h-[400px] w-full max-w-5xl mt-10 mx-auto ">
@@ -38,7 +39,7 @@ export default function TechGallery() {
                 </div>
                 <div className="relative group flex-grow transition-all w-56 h-[400px] duration-500 hover:w-full">
                     <img className="h-full w-full object-cover object-center"
-                        src={gal1}
+                        src={gal3}
                         alt="Solar Technology 3" />
                     <div
                         className="absolute inset-0 flex flex-col justify-end p-10 text-white bg-blue-500/80 opacity-0 group-hover:opacity-100 transition-all duration-300">

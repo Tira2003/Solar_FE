@@ -45,7 +45,7 @@ export default function FeaturesSection() {
                     <h2 className="text-balance text-4xl font-semibold lg:text-5xl">
                         Why Choose Hybrid Energy
                     </h2>
-                    <p className="mt-4">
+                    <p className="mt-4 text-lg text-muted-foreground">
                         We've reimagined solar energy to be smarter, simpler, and more affordable than ever.
                     </p>
                 </div>

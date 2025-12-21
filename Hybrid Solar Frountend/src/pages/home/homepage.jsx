@@ -10,6 +10,7 @@ import FAQSection from './components/faqsection';
 import ContactSection from './components/contact';
 import PricingSection from './components/price';
 import TechGallery from './components/tech_gallery';
+import AnomalyDashboardFeature from './components/anomaly_dachboard_feature';
 
 function HomePage() {
   return (
@@ -20,7 +21,7 @@ function HomePage() {
       <FeaturesSection />
       <TechGallery />
       <DashboardFeature />
-      
+      <AnomalyDashboardFeature />
       <EnvironmentalImpactSection />
       <ProjectGallery />
       <Testimonil />

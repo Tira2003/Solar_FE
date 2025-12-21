@@ -7,7 +7,7 @@ export default function Features() {
             <div className="@container mx-auto max-w-5xl px-6">
                 <div className="text-center">
                     <h2 className="text-balance text-4xl font-semibold lg:text-5xl">How It Works</h2>
-                    <p className="mt-4">Going solar has never been easier. Four simple steps to clean, affordable energy.</p>
+                    <p className="mt-4 text-lg text-muted-foreground">Going solar has never been easier. Four simple steps to clean, affordable energy.</p>
                 </div>
                 <div
                     className="@min-4xl:max-w-full @min-4xl:grid-cols-4 mx-auto mt-8 grid max-w-sm gap-6 *:text-center md:mt-16">
