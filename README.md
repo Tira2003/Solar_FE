@@ -2,6 +2,15 @@
 
 A comprehensive dashboard for monitoring solar panel performance, detecting anomalies, and managing invoices. This application serves as the frontend for the Hybrid Solar management system.
 
+## Links
+
+- **Website:** [https://fed-4-front-end-tirangaliyanage.netlify.app/](https://fed-4-front-end-tirangaliyanage.netlify.app/)
+- **Frontend Repository:** [https://github.com/Tira2003/Solar_FE](https://github.com/Tira2003/Solar_FE)
+- **Backend Repository:** [https://github.com/Tira2003/Hybrid-solar-Backend](https://github.com/Tira2003/Hybrid-solar-Backend)
+- **Data API Repository:** [https://github.com/Tira2003/Hybrid-Solar-data-api](https://github.com/Tira2003/Hybrid-Solar-data-api)
+- **Backend URL:** [https://fed-4-back-end-tiranga.onrender.com](https://fed-4-back-end-tiranga.onrender.com)
+- **API URL:** [https://hybrid-solar-data-api.onrender.com](https://hybrid-solar-data-api.onrender.com)
+
 ## Features
 
 - **Interactive Dashboard**: Visualize real-time solar data and performance metrics using [Recharts](https://recharts.org/).
