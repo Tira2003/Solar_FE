@@ -1,6 +1,7 @@
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { format } from "date-fns"
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -13,11 +14,12 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { DatePicker } from "@/components/ui/date-picker"
 import { useCreateSolarUnitMutation } from "@/lib/redux/query"
 
 const formSchema = z.object({
     serialNumber: z.string().min(1, { message: "Serial number is required" }),
-    installationDate: z.string().min(1, { message: "Installation date is required" }),
+    installationDate: z.date({ required_error: "Installation date is required" }),
     capacity: z.number().positive({ message: "Capacity must be a positive number" }),
     status: z.enum(["ACTIVE", "INACTIVE", "MAINTENANCE"], { message: "Please select a valid status" }),
 });
@@ -31,7 +33,12 @@ export function CreateSolarUnitForm() {
 
     async function onSubmit(values) {
         try {
-            await createSolarUnit(values).unwrap();
+            // Format date to ISO string for API
+            const formattedValues = {
+                ...values,
+                installationDate: format(values.installationDate, "yyyy-MM-dd"),
+            };
+            await createSolarUnit(formattedValues).unwrap();
         } catch (error) {
             console.error(error);
         }
@@ -57,10 +64,14 @@ export function CreateSolarUnitForm() {
                     control={form.control}
                     name="installationDate"
                     render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="flex flex-col">
                             <FormLabel>Installation Date</FormLabel>
                             <FormControl>
-                                <Input placeholder="Installation Date" {...field} />
+                                <DatePicker
+                                    date={field.value}
+                                    onDateChange={field.onChange}
+                                    placeholder="Select installation date"
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

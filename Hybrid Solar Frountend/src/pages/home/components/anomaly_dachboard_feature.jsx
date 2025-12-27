@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import anomalydash from './assests/anomali_dash.png';
 
 
@@ -43,12 +44,14 @@ const AnomalyDashboardFeature = () => {
             
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
- 
+
+              <Link to="/dashboard/anomalies">
               <button 
                 className="px-5 py-2.5 rounded-lg bg-blue-600 text-white font-medium text-sm hover:bg-blue-700 transition-all duration-200 shadow-sm"
               >
                 View Anomaly Dashboard
               </button>
+              </Link>
 
             </div>
           </div>

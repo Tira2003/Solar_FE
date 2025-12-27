@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import admindash from './assests/admin_dash2.png';
 
 
@@ -44,11 +45,13 @@ const DashboardFeature = () => {
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
  
-              <button 
-                className="px-5 py-2.5 rounded-lg bg-blue-600 text-white font-medium text-sm hover:bg-blue-700 transition-all duration-200 shadow-sm"
-              >
-                Go to Dashboard
-              </button>
+              <Link to="/dashboard">
+                <button 
+                  className="px-5 py-2.5 rounded-lg bg-blue-600 text-white font-medium text-sm hover:bg-blue-700 transition-all duration-200 shadow-sm"
+                >
+                  Go to Dashboard
+                </button>
+              </Link>
 
             </div>
           </div>

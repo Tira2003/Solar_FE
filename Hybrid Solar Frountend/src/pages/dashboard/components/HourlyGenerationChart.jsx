@@ -32,39 +32,37 @@ const HourlyGenerationChart = ({ solarUnitId }) => {
         </h2>
         <p className="text-gray-500 text-sm mb-4">Detailed view per hour</p>
         <div className="h-64 flex items-center justify-center text-gray-400">
-          No data available
+          Feature available soon...
         </div>
       </Card>
     );
   }
 
   // Transform data for the chart
-  const chartData = data.slice(0, 8).map((record, index) => {
-    // Create time labels (00:00, 04:00, 08:00, etc.)
-    const hour = index * 4;
+  const chartData = data.map((record) => {
+    // Backend returns _id.hour (0-23) and totalEnergy
+    const hour = record._id?.hour ?? 0;
     const timeLabel = `${hour.toString().padStart(2, '0')}:00`;
     
     // Split energy between solar and wind (mock split for demonstration)
     const totalEnergy = record.totalEnergy || 0;
     const solarEnergy = totalEnergy * 0.6; // 60% solar
-    const windEnergy = totalEnergy * 0.4;  // 40% wind
+  
     
     return {
       time: timeLabel,
+      hour: hour,
       solar: Math.round(solarEnergy * 10) / 10,
-      wind: Math.round(windEnergy * 10) / 10,
+    
     };
-  });
+  }).sort((a, b) => a.hour - b.hour); // Sort by hour ascending
 
   const chartConfig = {
     solar: {
       label: "Solar",
       color: "#3b82f6", // blue-500
     },
-    wind: {
-      label: "Wind",
-      color: "#22d3ee", // cyan-400
-    },
+    
   };
 
   return (

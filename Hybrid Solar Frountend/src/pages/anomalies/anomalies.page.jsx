@@ -1,7 +1,6 @@
 import { useGetSolarUnitForUserQuery, useGetAnomaliesQuery, useGetAnomalyStatsQuery, useTriggerSyncAndDetectMutation } from "@/lib/redux/query";
 import DataCard from "./components/DataCard";
 import AnomalyList from "./components/AnomalyList";
-import AnomalyChart from "./components/AnomalyChart";
 import AnomalyFilters from "./components/AnomalyFilters";
 import AnomalyStatsCard from "./components/AnomalyStatsCard";
 import { useUser } from "@clerk/clerk-react";
@@ -9,7 +8,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlertTriangle, BarChart3, Activity, RefreshCw } from "lucide-react";
+import { AlertTriangle, Activity, RefreshCw } from "lucide-react";
 import Loader from "@/components/loader";
 import ErrorPage from "@/components/ErrorPage";
 
@@ -88,16 +87,13 @@ const AnomaliesPage = () => {
         <TabsList className="mb-6">
           <TabsTrigger value="detected" className="flex items-center gap-2">
             <AlertTriangle className="w-4 h-4" />
-            Backend Detected Anomalies
+             Anomalies List
           </TabsTrigger>
           <TabsTrigger value="analysis" className="flex items-center gap-2">
             <Activity className="w-4 h-4" />
-            Local Analysis
+            Analysis
           </TabsTrigger>
-          <TabsTrigger value="chart" className="flex items-center gap-2">
-            <BarChart3 className="w-4 h-4" />
-            Visualization
-          </TabsTrigger>
+
         </TabsList>
 
         {/* Backend Detected Anomalies Tab */}
@@ -124,10 +120,7 @@ const AnomaliesPage = () => {
           {solarUnit && <DataCard solarUnitId={solarUnit._id} />}
         </TabsContent>
 
-        {/* Chart Visualization Tab */}
-        <TabsContent value="chart">
-          <AnomalyChart anomalies={anomalies || []} days={30} />
-        </TabsContent>
+
       </Tabs>
     </main>
   );
