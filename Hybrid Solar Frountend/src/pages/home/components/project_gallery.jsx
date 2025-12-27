@@ -76,26 +76,37 @@ const galleryItems = [
 
 export default function ProjectGallery() {
   return (
+    <section id="projects" className="py-12 md:py-16 lg:py-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto overflow-hidden">
+      <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-900 text-center mb-8 md:mb-12">Our Projects</h2>
+      
+      <div className="flex items-center justify-center mb-6 md:hidden">
+        <div className="flex items-center">
+          <CountUp
+            from={400}
+            to={10000}
+            separator=","
+            direction="up"
+            duration={1}
+            className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent"
+          />
+          <p className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent">+</p>
+        </div>
+      </div>
 
-    <section id="projects" className="py-16 md:py-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
-      <h2 className="text-3xl md:text-5xl font-semibold text-gray-900 text-center mb-12">Our Projects</h2>
       <div className="relative" style={{ minHeight: '600px' }}>
-        {/* CountUp centered in the middle of the gallery */}
-        <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none mt-84">
-            {/* Inner glow effect */}
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-400/10 to-transparent"></div>
-            <div className="relative flex items-center">
-              <CountUp
-                from={400}
-                to={10000}
-                separator=","
-                direction="up"
-                duration={1}
-                className="text-5xl md:text-8xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent drop-shadow-lg"
-              />
-              <p className="text-5xl md:text-8xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent drop-shadow-lg">+</p>
-            </div>
-          
+        <div className="hidden md:flex absolute inset-0 items-center justify-center z-10 pointer-events-none mt-84">
+          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-400/10 to-transparent"></div>
+          <div className="relative flex items-center">
+            <CountUp
+              from={400}
+              to={10000}
+              separator=","
+              direction="up"
+              duration={1}
+              className="text-5xl md:text-8xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent drop-shadow-lg"
+            />
+            <p className="text-5xl md:text-8xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent drop-shadow-lg">+</p>
+          </div>
         </div>
         
         <Masonry

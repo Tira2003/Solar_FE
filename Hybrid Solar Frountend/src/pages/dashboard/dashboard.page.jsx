@@ -31,37 +31,32 @@ const DashboardPage = () => {
   }
 
   return (
-    <main className="mt-4 px-6">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+    <main className="mt-2 md:mt-4 px-3 md:px-6 pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 md:mb-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Overview</h1>
-          <p className="text-gray-500 mt-1">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Overview</h1>
+          <p className="text-gray-500 mt-0.5 md:mt-1 text-sm md:text-base">
             Monitor your energy production and grid stability.
           </p>
         </div>
         
       </div>
 
-      {/* Main Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Column - Cards (2x2 grid) */}
-        <div className="lg:col-span-1 space-y-6">
-          {/* Top Row - Larger Cards */}
-          <div className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="lg:col-span-1 space-y-4 md:space-y-6">
+          <div className="space-y-4 md:space-y-6">
             <WeatherCard />
             <EnergyForecastCard />
           </div>
           
           
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
             <AnomalyCountCard />
             <PendingPaymentsCard />
           </div>
         </div>
 
-        {/* Right Column - Charts */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-4 md:space-y-6">
           <DataChart solarUnitId={solarUnit._id} />
           <HourlyGenerationChart solarUnitId={solarUnit._id} />
         </div>
