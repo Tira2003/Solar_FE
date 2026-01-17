@@ -11,10 +11,11 @@ import {
   Zap,
   ThermometerSun,
   CloudRain,
-  Activity
+  Activity,
+  Loader2
 } from "lucide-react";
 import { useAcknowledgeAnomalyMutation, useResolveAnomalyMutation } from "@/lib/redux/query";
-import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const SEVERITY_CONFIG = {
   CRITICAL: {
@@ -138,6 +139,9 @@ const AnomalyCard = ({ anomaly, onAcknowledge, onResolve, isLoading }) => {
               onClick={() => onAcknowledge(anomaly._id)}
               disabled={isLoading}
             >
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+              ) : null}
               Acknowledge
             </Button>
           )}
@@ -149,7 +153,11 @@ const AnomalyCard = ({ anomaly, onAcknowledge, onResolve, isLoading }) => {
               disabled={isLoading}
               className="bg-green-600 hover:bg-green-700"
             >
-              <CheckCircle2 className="w-4 h-4 mr-1" />
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+              ) : (
+                <CheckCircle2 className="w-4 h-4 mr-1" />
+              )}
               Resolve
             </Button>
           )}
@@ -162,20 +170,41 @@ const AnomalyCard = ({ anomaly, onAcknowledge, onResolve, isLoading }) => {
 const AnomalyList = ({ anomalies = [], isLoading = false }) => {
   const [acknowledgeAnomaly, { isLoading: isAcknowledging }] = useAcknowledgeAnomalyMutation();
   const [resolveAnomaly, { isLoading: isResolving }] = useResolveAnomalyMutation();
+  const { toast } = useToast();
 
   const handleAcknowledge = async (id) => {
     try {
       await acknowledgeAnomaly(id).unwrap();
+      toast({
+        title: "Anomaly Acknowledged",
+        description: "The anomaly has been marked as acknowledged.",
+        variant: "success",
+      });
     } catch (error) {
       console.error("Failed to acknowledge anomaly:", error);
+      toast({
+        title: "Failed to Acknowledge",
+        description: "There was an error acknowledging the anomaly. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
   const handleResolve = async (id) => {
     try {
       await resolveAnomaly({ id }).unwrap();
+      toast({
+        title: "Anomaly Resolved",
+        description: "The anomaly has been marked as resolved.",
+        variant: "success",
+      });
     } catch (error) {
       console.error("Failed to resolve anomaly:", error);
+      toast({
+        title: "Failed to Resolve",
+        description: "There was an error resolving the anomaly. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 

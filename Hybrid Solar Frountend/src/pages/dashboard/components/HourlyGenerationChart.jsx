@@ -24,15 +24,29 @@ const HourlyGenerationChart = ({ solarUnitId }) => {
     );
   }
 
-  if (!data || isError) {
+  if (!data || data.length === 0 || isError) {
     return (
       <Card className="rounded-2xl p-6 bg-white border border-gray-200">
         <h2 className="text-xl font-semibold text-gray-800 mb-2">
           Hourly Generation Breakdown
         </h2>
         <p className="text-gray-500 text-sm mb-4">Detailed view per hour</p>
-        <div className="h-64 flex items-center justify-center text-gray-400">
-          Feature available soon...
+        <div className="h-64 flex flex-col items-center justify-center text-gray-400 bg-gray-50 rounded-lg">
+          <svg 
+            className="w-16 h-16 mb-4 text-gray-300" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={1.5} 
+              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" 
+            />
+          </svg>
+          <p className="text-gray-500 font-medium">No Generation Data Available</p>
+          <p className="text-gray-400 text-sm mt-1">Data will appear once energy generation is recorded</p>
         </div>
       </Card>
     );
@@ -43,17 +57,12 @@ const HourlyGenerationChart = ({ solarUnitId }) => {
     // Backend returns _id.hour (0-23) and totalEnergy
     const hour = record._id?.hour ?? 0;
     const timeLabel = `${hour.toString().padStart(2, '0')}:00`;
-    
-    // Split energy between solar and wind (mock split for demonstration)
     const totalEnergy = record.totalEnergy || 0;
-    const solarEnergy = totalEnergy * 0.6; // 60% solar
-  
     
     return {
       time: timeLabel,
       hour: hour,
-      solar: Math.round(solarEnergy * 10) / 10,
-    
+      solar: Math.round(totalEnergy * 10) / 10,
     };
   }).sort((a, b) => a.hour - b.hour); // Sort by hour ascending
 
@@ -76,7 +85,8 @@ const HourlyGenerationChart = ({ solarUnitId }) => {
       </div>
 
       {/* Chart */}
-      <ChartContainer config={chartConfig}>
+      <div className="h-64 overflow-hidden">
+        <ChartContainer config={chartConfig} className="h-full w-full">
         <BarChart
           data={chartData}
           margin={{
@@ -108,16 +118,10 @@ const HourlyGenerationChart = ({ solarUnitId }) => {
             dataKey="solar"
             fill="var(--color-solar)"
             radius={[4, 4, 0, 0]}
-            stackId="stack"
-          />
-          <Bar
-            dataKey="wind"
-            fill="var(--color-wind)"
-            radius={[4, 4, 0, 0]}
-            stackId="stack"
           />
         </BarChart>
       </ChartContainer>
+      </div>
     </Card>
   );
 };
