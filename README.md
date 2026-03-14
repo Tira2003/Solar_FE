@@ -8,8 +8,8 @@ A comprehensive dashboard for monitoring solar panel performance, detecting anom
 - **Frontend Repository:** [https://github.com/Tira2003/Solar_FE](https://github.com/Tira2003/Solar_FE)
 - **Backend Repository:** [https://github.com/Tira2003/Hybrid-solar-Backend](https://github.com/Tira2003/Hybrid-solar-Backend)
 - **Data API Repository:** [https://github.com/Tira2003/Hybrid-Solar-data-api](https://github.com/Tira2003/Hybrid-Solar-data-api)
-- **Backend URL:** [https://fed-4-back-end-tiranga.onrender.com](https://fed-4-back-end-tiranga.onrender.com)
-- **API URL:** [https://hybrid-solar-data-api.onrender.com](https://hybrid-solar-data-api.onrender.com)
+
+
 
 ## Features
 
